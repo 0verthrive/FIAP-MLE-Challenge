@@ -9,7 +9,7 @@ class Extraction:
 
 
     def open_files(self, path): 
-        base_dir = os.path.dirname(__file__)  # Diretório onde está o arquivo Python atual
+        base_dir = os.path.dirname(__file__)
         full_path = os.path.join(base_dir, path)
         with open(full_path, 'r', encoding='utf-8') as file:
             return json.load(file)
@@ -36,7 +36,6 @@ class Extraction:
 
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, "html.parser")
-
             tables = soup.find_all('table', "tb_base tb_dados")
 
             if tables:
@@ -52,4 +51,5 @@ class Extraction:
                             df = pd.DataFrame(data, columns=headers)
                         elif data:
                             df = pd.DataFrame(data)
+                        print(df.head(2))
                 return df.to_html()
