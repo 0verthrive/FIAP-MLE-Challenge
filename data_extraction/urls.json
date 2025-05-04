@@ -1,23 +1,23 @@
 {
-    "Producao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_02",
-    "Comercializacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_04",
+    "Producao": "opcao=opt_02",
+    "Comercializacao": "opcao=opt_04",
     "Processamento": [
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_01&opcao=opt_03",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_02&opcao=opt_03",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_03&opcao=opt_03",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_04&opcao=opt_03"
+        {"ProcessoViniferas": "subopcao=subopt_01&opcao=opt_03"},
+        {"ProcessoAmericanas":"subopcao=subopt_02&opcao=opt_03"},
+        {"ProcessoMesa":"subopcao=subopt_03&opcao=opt_03"},
+        {"ProcessoSemclass":"subopcao=subopt_04&opcao=opt_03"}
     ],
     "Importacao": [
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_01&opcao=opt_05",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_02&opcao=opt_05",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_03&opcao=opt_05",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_04&opcao=opt_05",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_05&opcao=opt_05"
+        {"ImpVinhos":"subopcao=subopt_01&opcao=opt_05"},
+        {"ImpEspumantes":"subopcao=subopt_02&opcao=opt_05"},
+        {"ImpFrescas":"subopcao=subopt_03&opcao=opt_05"},
+        {"ImpPassas":"subopcao=subopt_04&opcao=opt_05"},
+        {"ImpSuco":"subopcao=subopt_05&opcao=opt_05"}
     ],
     "Exportacao": [
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_01&opcao=opt_06",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_02&opcao=opt_06",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_03&opcao=opt_06",
-        "http://vitibrasil.cnpuv.embrapa.br/index.php?subopcao=subopt_04&opcao=opt_06"
+        {"ExpVinho":"subopcao=subopt_01&opcao=opt_06"},
+        {"ExpEspumantes":"subopcao=subopt_02&opcao=opt_06"},
+        {"ExpUva":"subopcao=subopt_03&opcao=opt_06"},
+        {"ExpSuco":"subopcao=subopt_04&opcao=opt_06"}
     ]
 }

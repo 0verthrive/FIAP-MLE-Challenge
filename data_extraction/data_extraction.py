@@ -1,54 +1,55 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.options import Options
-import time, json
-import requests
 from bs4 import BeautifulSoup
-import os
+import requests
+import pandas as pd
+import json, os
 
-# Inicializar o navegador
-browser = webdriver.Edge()
-
-def extract_urls(data):
-    urls = []
-    for value in data.values():
-        if isinstance(value, list):
-            urls.extend(value)  # Adiciona todas as URLs da lista
-        elif isinstance(value, str):
-            urls.append(value)  # Adiciona a URL única
-    return urls
-
-def urls():
-    with open("./data_extraction/urls.json", "r") as file:
-        return extract_urls(json.load(file))
+class Extraction:
+    def __init__(self):
+        self.url_default = "http://vitibrasil.cnpuv.embrapa.br/index.php?"
 
 
-def requests_download(url):
+    def open_files(self, path): 
+        base_dir = os.path.dirname(__file__)  # Diretório onde está o arquivo Python atual
+        full_path = os.path.join(base_dir, path)
+        with open(full_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
 
-    response = requests.get(url)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, "html.parser")
-        # Procurar links para arquivos CSV na página
-        csv_links = soup.find_all("a", href=True)
-        for link in csv_links:
-            if link['href'].endswith(".csv"):
-                csv_url = link['href']
-                # Se o link for relativo, adicionar a URL base
-                if not csv_url.startswith("http"):
-                    csv_url = url + csv_url
+    def get_url(self, option, ano):
+        options_url = self.open_files("urls.json")
+        
+        for keys, values in options_url.items():
+            if isinstance(values, list):
+                for item in values:
+                    if option in item:
+                        return "{}ano={}&{}".format(self.url_default, ano, item[option])
+            elif keys == option:
+                return "{}ano={}&{}".format(self.url_default, ano, values)
 
-                # Fazer download do arquivo CSV
-                csv_response = requests.get(csv_url)
-                if csv_response.status_code == 200:
-                    file_name = os.path.join("C:\\Users\\Overthrive\\Documents\\faculdade_ml\\tech_chalenge\\project\data_extraction\data", csv_url.split("/")[-1])
-                    with open(file_name, "wb") as file:
-                        file.write(csv_response.content)
-                    print(f"Arquivo {file_name} baixado com sucesso.")
-                else:
-                    print(f"Erro ao baixar o arquivo {csv_url}.")
-    else:
-        print("Não foi possível acessar o site.")
+    def request_csv(self, option, ano):
+        df = pd.read_csv(f".\data_extraction\data\{option}.csv", delimiter=";")
+        df.rename({ano: "quantidade(L.)"}, axis=1, inplace=True)
+        return df.to_html(columns=['produto', "quantidade (L.)"])
+    
+    def request_site(self, option, ano):
+        url = self.get_url(option, ano)
+        response = requests.get(url)
 
-    print("Processo concluído.")
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, "html.parser")
 
+            tables = soup.find_all('table', "tb_base tb_dados")
 
+            if tables:
+                for i, table in enumerate(tables):
+                    rows = table.find_all('tr')
+                    if rows:
+                        headers = [th.text.strip() for th in rows[0].find_all('th')]
+                        data = []
+                        for row in rows[1:]:
+                            cells = [td.text.strip() for td in row.find_all('td')]
+                            data.append(cells)
+                        if headers and data:
+                            df = pd.DataFrame(data, columns=headers)
+                        elif data:
+                            df = pd.DataFrame(data)
+                return df.to_html()
