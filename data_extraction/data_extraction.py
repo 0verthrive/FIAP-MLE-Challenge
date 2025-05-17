@@ -4,9 +4,20 @@ import pandas as pd
 import json, os
 
 class Extraction:
+    three_columns = [
+        "exp_espumantes",
+        "exp_suco",
+        "exp_uva",
+        "exp_vinho",
+        "imp_espumantes",
+        "imp_uvas_frescas",
+        "imp_uvas_passas",
+        "imp_suco",
+        "imp_vinho"
+    ]
+
     def __init__(self):
         self.url_default = "http://vitibrasil.cnpuv.embrapa.br/index.php?"
-
 
     def open_files(self, path): 
         base_dir = os.path.dirname(__file__)
@@ -25,10 +36,13 @@ class Extraction:
             elif keys == option:
                 return "{}ano={}&{}".format(self.url_default, ano, values)
 
-    def request_csv(self, option, ano):
+    def request_csv(self, option, ano, columns):
         df = pd.read_csv(f".\data_extraction\data\{option}.csv", delimiter=";")
-        df.rename({ano: "quantidade(L.)"}, axis=1, inplace=True)
-        return df.to_html(columns=['produto', "quantidade (L.)"])
+        if option in self.three_columns:
+            df.rename({ano: columns[1], ano+".1": columns[2]}, axis=1, inplace=True)
+        else:
+            df.rename({ano: columns[1]}, axis=1, inplace=True)
+        return df.to_html(columns=columns)
     
     def request_site(self, option, ano):
         url = self.get_url(option, ano)
@@ -51,5 +65,4 @@ class Extraction:
                             df = pd.DataFrame(data, columns=headers)
                         elif data:
                             df = pd.DataFrame(data)
-                        print(df.head(2))
                 return df.to_html()
