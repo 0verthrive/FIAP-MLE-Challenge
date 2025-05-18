@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import polars as pl
+import pandas as pd
 import json, os
 
 class Extraction:
@@ -37,15 +37,12 @@ class Extraction:
                 return "{}ano={}&{}".format(self.url_default, ano, values)
 
     def request_csv(self, option, ano, columns):
-        df = pl.read_csv(f"./data_extraction/data/{option}.csv", separator=";", encoding="utf8")
-
+        df = pd.read_csv(f".\data_extraction\data\{option}.csv", delimiter=";")
         if option in self.three_columns:
-            df = df.rename({ano: columns[1], f"{ano}.1": columns[2]})
+            df.rename({ano: columns[1], ano+".1": columns[2]}, axis=1, inplace=True)
         else:
-            df = df.rename({ano: columns[1]})
-        
-        return df.select(columns).to_pandas().to_html(index=False)
-
+            df.rename({ano: columns[1]}, axis=1, inplace=True)
+        return df.to_html(columns=columns)
     
     def request_site(self, option, ano):
         url = self.get_url(option, ano)
@@ -65,7 +62,7 @@ class Extraction:
                             cells = [td.text.strip() for td in row.find_all('td')]
                             data.append(cells)
                         if headers and data:
-                            df = pl.DataFrame(data, schema=headers)
+                            df = pd.DataFrame(data, columns=headers)
                         elif data:
-                            df = pl.DataFrame(data)
-                return df.to_pandas().to_html(index=False)
+                            df = pd.DataFrame(data)
+                return df.to_html()
