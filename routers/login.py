@@ -15,7 +15,7 @@ async def login_form(request: Request):
 async def login_action(request: Request, username: str = Form(...), password: str = Form(...)):
     # Envia para /token
     async with httpx.AsyncClient() as client:
-        response = await client.post("/token", data={"username": username, "password": password})
+        response = await client.post("https://fiap-mle-challenge1-4r8dlqvve-0verthrives-projects.vercel.app/token", data={"username": username, "password": password})
     
     if response.status_code == 200:
         token = response.json()["access_token"]
@@ -33,7 +33,7 @@ async def home(request: Request):
 
     headers = {"Authorization": f"Bearer {token}"}
     async with httpx.AsyncClient() as client:
-        response = await client.get("/users/me", headers=headers)
+        response = await client.get("https://fiap-mle-challenge1-4r8dlqvve-0verthrives-projects.vercel.app/users/me", headers=headers)
 
     if response.status_code != 200:
         return RedirectResponse(url="/login")
