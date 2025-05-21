@@ -32,32 +32,32 @@ A arquitetura do projeto contempla:
 
 ## 🗂️ Estrutura de Pastas
 
-project/
-│
-├── app.py # Arquivo principal da aplicação
-├── vercel.json # Configuração do deploy para Vercel
-├── requirements.txt # Dependências do projeto
-├── readme.md # Este arquivo
-│
-├── assets/ # Imagens e arquivos estáticos
-│ └── images/
-│
-├── data_extraction/ # Lógica para scraping de dados da Embrapa
-│ └── data_extraction.py
-│
-├── routers/ # Rotas organizadas por funcionalidade
-│ └── auth.py
-│ └── exportacao.py
-│ └── importacao.py
-│ └── processamento.py
-│ └── producao.py
-│
-├── views/ # Templates HTML para renderização de dados
-│ └── home.html
-│ └── login.html
-│ └── product.html
-│
-└── env/ # Variáveis de ambiente (não versionadas)
+project/  
+│  
+├── app.py # Arquivo principal da aplicação  
+├── vercel.json # Configuração do deploy para Vercel  
+├── requirements.txt # Dependências do projeto  
+├── readme.md # Este arquivo  
+├── api/ # Contém apenas a chamada para o app para direcionar o vercel  
+│ └── index.py  
+|  
+├── assets/ # Imagens e arquivos estáticos  
+│ └── images/  
+│  
+├── data_extraction/ # Lógica para scraping de dados da Embrapa  
+│ └── data_extraction.py  
+│  
+├── routers/ # Rotas organizadas por funcionalidade  
+│ └── auth.py  
+│ └── login.py  
+│ └── tables.py  
+│  
+├── views/ # Templates HTML para renderização de dados  
+│ └── home.html  
+│ └── login.html  
+│ └── product.html  
+│  
+└── env/ # Variáveis de ambiente (não versionadas)  
 
 📊 Funcionalidades Disponíveis
 Produção de vinhos
@@ -98,7 +98,9 @@ Não classificadas
 O pacote pywin32 foi removido do requirements.txt porque não é compatível com ambientes Linux, como o da Vercel.
 
 📎 Link do Projeto
-🔗 Será preenchido após o deploy na Vercel
+🔗 https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/
+user: johndoe
+pass: secret
 
 👥 Autores
 Sara Lessa
