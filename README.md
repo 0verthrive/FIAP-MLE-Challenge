@@ -59,48 +59,38 @@ project/
 │  
 └── env/ # Variáveis de ambiente (não versionadas)  
 
-📊 Funcionalidades Disponíveis
-Produção de vinhos
+---
 
-Comercialização de produtos
+📊 Funcionalidades Disponíveis  
 
-Exportações:
+◆ Produção de vinhos  
 
-Espumantes
+◆ Comercialização  
 
-Suco
+◆ Exportações:  
+    ◈ Espumantes  
+    ◈ Suco  
+    ◈ Uva  
+    ◈ Vinho  
 
-Uva
+◆ Importações:  
+    ◈ Espumantes  
+    ◈ Suco  
+    ◈ Uvas frescas  
+    ◈ Uvas passas  
+    ◈ Vinho  
 
-Vinho
-
-Importações:
-
-Espumantes
-
-Suco
-
-Uvas frescas / passas
-
-Vinho
-
-Processamento:
-
-Uvas americanas híbridas
-
-Uvas de mesa
-
-Uvas viníferas
-
-Não classificadas
+◆ Processamento:  
+    ◈ Uvas americanas híbridas  
+    ◈ Uvas de mesa  
+    ◈ Uvas viníferas  
+    ◈ Não classificadas  
 
 ⚠️ Observações para Deploy
 O pacote pywin32 foi removido do requirements.txt porque não é compatível com ambientes Linux, como o da Vercel.
 
-📎 Link do Projeto
-🔗 https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/
-user: johndoe
-pass: secret
+📎 Link do Projeto  
+🔗 https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/  
 
 👥 Autores
 Sara Lessa

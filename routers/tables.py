@@ -12,10 +12,11 @@ router = APIRouter()
 # Função para buscar dados de acordo com a origem
 def requests(option, ano, columns: list):
     ext = Extraction()
-    print("entrou em requests")
     try:
+        print("try get of the site")
         return ext.request_site(option, ano)
     except:
+        print("exception request, get of the csv")
         return ext.request_csv(option, ano, columns)
 
 # Verifica o usuário autenticado baseado no cookie
