@@ -86,8 +86,31 @@ project/
     ◈ Uvas viníferas  
     ◈ Não classificadas  
 
-⚠️ Observações para Deploy
-O pacote pywin32 foi removido do requirements.txt porque não é compatível com ambientes Linux, como o da Vercel.
+⚠️ Observações para Deploy  
+Para testar recursos utilizando o swagger basta estar logado e acessar [`/docs`](https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/docs)
+
+Parâmetros existentes:
+    Em ano as opções vão de 1970-2023
+    
+    Em Exportação as opções são:
+    "exp_espumantes",
+        "exp_suco",
+        "exp_uva",
+        "exp_vinho"
+    
+    Em Importação as opções são:
+        "imp_espumantes",
+        "imp_uvas_frescas",
+        "imp_uvas_passas",
+        "imp_suco",
+        "imp_vinho"
+    
+    Em Processamento as opções sâo:
+        "proc_viniferas",
+        "proc_americanas_hibridas",
+        "proc_uvas_mesa",
+        "proc_sem_classificacao"
+
 
 📎 Link do Projeto  
 🔗 https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/  
