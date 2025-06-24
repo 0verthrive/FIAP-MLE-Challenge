@@ -8,8 +8,7 @@
         "includeFiles": [
           "views/**/*",
           "routers/**/*",
-          "data_extraction/**/*",
-          "data_extraction/data/*"
+          "data_extraction/**/*"
         ],
         "excludeFiles": [
           "env/**/*",

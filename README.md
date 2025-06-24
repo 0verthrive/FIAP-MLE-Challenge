@@ -89,8 +89,9 @@ project/
 ⚠️ Observações para Deploy  
 Para testar recursos utilizando o swagger basta estar logado e acessar [`/docs`](https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/docs)
 
-Parâmetros existentes:
-    Em ano as opções vão de 1970-2023
+Parâmetros existentes:  
+
+    Em ano as opções vão de 1970-2024
     
     Em Exportação as opções são:
     "exp_espumantes",
@@ -112,8 +113,11 @@ Parâmetros existentes:
         "proc_sem_classificacao"
 
 
-📎 Link do Projeto  
+📎 Link do Projeto:  
 🔗 https://fiap-mle-challenge1-git-main-0verthrives-projects.vercel.app/  
+
+📎 Fonte das consultas:
+🔗 http://vitibrasil.cnpuv.embrapa.br/index.php?
 
 👥 Autores
 Sara Lessa

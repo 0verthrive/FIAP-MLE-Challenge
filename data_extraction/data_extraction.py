@@ -37,12 +37,12 @@ class Extraction:
                 return "{}ano={}&{}".format(self.url_default, ano, values)
 
     def request_csv(self, option, ano, columns):
-        print("Entrou request csv")
         matches = glob.glob(f"**/{option}.csv", recursive=True)
         if matches:
             df = pd.read_csv(matches[0], delimiter=";")
-
-        print(df)
+        else:
+            return {'Message error': 'DF not found'}
+            
         if option in self.three_columns:
             df.rename({ano: columns[1], ano+".1": columns[2]}, axis=1, inplace=True)
         else:
