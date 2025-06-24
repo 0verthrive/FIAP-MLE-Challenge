@@ -38,7 +38,11 @@ class Extraction:
 
     def request_csv(self, option, ano, columns):
         print("Entrou request csv")
-        df = pd.read_csv(f"\data_extraction\data\{option}.csv", delimiter=";")
+        matches = glob.glob(f"**/{option}.csv", recursive=True)
+        if matches:
+            df = pd.read_csv(matches[0], delimiter=";")
+        else:
+            print("Arquivo não encontrado.")
         print(df)
         if option in self.three_columns:
             df.rename({ano: columns[1], ano+".1": columns[2]}, axis=1, inplace=True)
