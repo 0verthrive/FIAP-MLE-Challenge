@@ -110,4 +110,4 @@ def processamento(request: Request, suboption: str, ano: str = "2023"):
 
 @router.get("/")
 async def home(request: Request):
-    return templates.TemplateResponse("home.html")
+    return templates.TemplateResponse("home.html", {"request": request})
