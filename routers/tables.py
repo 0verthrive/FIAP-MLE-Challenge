@@ -32,9 +32,9 @@ def requests(option, ano, columns: list):
 # Rota protegida com checagem de autenticação
 @router.get("/producao/", response_class=HTMLResponse)
 def producao(request: Request, ano: str = "2023"):
-    user = get_current_user(request)
-    if not user:
-        return RedirectResponse(url="/login", status_code=302)
+    # user = get_current_user(request)
+    # if not user:
+    #     return RedirectResponse(url="/login", status_code=302)
     
     option = "Producao"
     columns = ['Produto', "Quantidade (L.)"]
@@ -49,9 +49,9 @@ def producao(request: Request, ano: str = "2023"):
 
 @router.get("/comercializacao/", response_class=HTMLResponse)
 def comercializacao(request: Request, ano: str = "2023"):
-    user = get_current_user(request)
-    if not user:
-        return RedirectResponse(url="/login")
+    # user = get_current_user(request)
+    # if not user:
+    #     return RedirectResponse(url="/login")
     
     option = "Comercializacao"
     columns = ['Produto', 'Quantidade (Kg)']
@@ -65,9 +65,9 @@ def comercializacao(request: Request, ano: str = "2023"):
 
 @router.get("/exportacao/{suboption}", response_class=HTMLResponse)
 def exportacao(request: Request, suboption: str, ano: str = "2023"):
-    user = get_current_user(request)
-    if not user:
-        return RedirectResponse(url="/login")
+    # user = get_current_user(request)
+    # if not user:
+    #     return RedirectResponse(url="/login")
     
     columns = ["Países", "Quantidade (Kg)", "Valor (US$)"]
     dados = requests(suboption, ano, columns)
@@ -80,9 +80,9 @@ def exportacao(request: Request, suboption: str, ano: str = "2023"):
 
 @router.get("/importacao/{suboption}", response_class=HTMLResponse)
 def importacao(request: Request, suboption: str, ano: str = "2023"):
-    user = get_current_user(request)
-    if not user:
-        return RedirectResponse(url="/login")
+    # user = get_current_user(request)
+    # if not user:
+    #     return RedirectResponse(url="/login")
     
     columns = ["Países", "Quantidade (Kg)", "Valor (US$)"]
     dados = requests(suboption, ano, columns)
@@ -95,9 +95,9 @@ def importacao(request: Request, suboption: str, ano: str = "2023"):
 
 @router.get("/processamento/{suboption}", response_class=HTMLResponse)
 def processamento(request: Request, suboption: str, ano: str = "2023"):
-    user = get_current_user(request)
-    if not user:
-        return RedirectResponse(url="/login")
+    # user = get_current_user(request)
+    # if not user:
+    #     return RedirectResponse(url="/login")
     
     columns = ["Cultivar", "Quantidade (Kg)"]
     dados = requests(suboption, ano, columns)
