@@ -20,14 +20,14 @@ def requests(option, ano, columns: list):
         return ext.request_csv(option, ano, columns)
 
 # Verifica o usuário autenticado baseado no cookie
-def get_current_user(request: Request):
-    token = request.cookies.get("access_token")
-    if not token:
-        return None
-    user = fake_decode_token(token)
-    if not user or getattr(user, "disabled", False):
-        return None
-    return user
+# def get_current_user(request: Request):
+#     token = request.cookies.get("access_token")
+#     if not token:
+#         return None
+#     user = fake_decode_token(token)
+#     if not user or getattr(user, "disabled", False):
+#         return None
+#     return user
 
 # Rota protegida com checagem de autenticação
 @router.get("/producao/", response_class=HTMLResponse)

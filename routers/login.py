@@ -7,11 +7,11 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="views")
 
-@router.get("/login", response_class=HTMLResponse)
+# @router.get("/login", response_class=HTMLResponse)
 async def login_form(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "erro": None})
 
-@router.post("/login")
+# @router.post("/login")
 async def login_action(request: Request, username: str = Form(...), password: str = Form(...)):
     # Envia para /token
     async with httpx.AsyncClient() as client:
@@ -25,7 +25,7 @@ async def login_action(request: Request, username: str = Form(...), password: st
     else:
         return templates.TemplateResponse("login.html", {"request": request, "erro": "Usuário ou senha inválidos"})
 
-@router.get("/")
+# @router.get("/")
 async def home(request: Request):
     token = request.cookies.get("access_token")
     if not token:
