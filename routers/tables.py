@@ -107,3 +107,7 @@ def processamento(request: Request, suboption: str, ano: str = "2023"):
         "tabela_html": dados,
         "ano": ano
     })
+
+@router.get("/")
+async def home(request: Request):
+    return templates.TemplateResponse("home.html")
